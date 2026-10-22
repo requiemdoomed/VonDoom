@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="author" content="Swayam Shakya">
+    <meta name="description" content="VonDoom: Digital Lock System by Swayam Shakya. An emerald-and-steel software lock and computer architecture lab.">
+    <title>
+      VonDoom: Digital Lock System
+    </title>
+    <link rel="icon" type="image/svg+xml" href="assets/vondoom-emblem.svg">
+    <meta name="theme-color" content="#06130d">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/app.js" defer>
+    </script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="#">
+        <img class="brand-mark" src="assets/vondoom-emblem.svg" alt="">
+        <b>
+          VONDOOM
+        </b>
+        <span>
+          / DIGITAL LOCK SYSTEM
+        </span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#console">
+          Console
+        </a>
+        <a href="#logic">
+          Logic lab
+        </a>
+        <a href="#architecture">
+          Architecture
+        </a>
+        <a href="#engineering">
+          Engineering
+        </a>
+      </nav>
+      <button id="theme" class="small" aria-label="Toggle light or dark theme">
+        ◐ Theme
+      </button>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">
+            VONDOOM / ENGINEERED CONTROL
+          </div>
+          <h1>VonDoom<span class="hero-subtitle">Digital Lock System</span></h1>
+          <p>
+            An emerald-and-steel command interface for a working Python lock. Inspect every key, state transition, and access decision—from the circuit to the controller.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#console">
+              Open the console ↗
+            </a>
+            <a class="button" href="#logic">
+              Explore the gates
+            </a>
+          </div>
+          <div class="byline">
+            DESIGNED & BUILT BY
+            <strong>
+              SWAYAM SHAKYA
+            </strong>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="VonDoom system insignia">
+          <div class="insignia-label">STEEL RESOLVE / DIGITAL PRECISION</div>
+          <img class="doom-insignia" src="assets/vondoom-emblem.svg" alt="VonDoom insignia: a steel mask beneath an emerald hood, framed by gold circuit lines.">
+          <div class="insignia-caption"><span>VD / 01</span><span>EMERALD · STEEL · CONTROL</span></div>
+        </div>
+      </section>
+      <div class="specs">
+        <div>
+          <strong>
+            00 → 11
+          </strong>
+          <span>
+            Two-bit state register
+          </span>
+        </div>
+        <div>
+          <strong id="self-check">
+            Checking…
+          </strong>
+          <span>
+            Exhaustive gate equivalence cases
+          </span>
+        </div>
+        <div>
+          <strong>
+            0 dependencies
+          </strong>
+          <span>
+            Python runtime · standard library
+          </span>
+        </div>
+        <div>
+          <strong>
+            100% software
+          </strong>
+          <span>
+            No hardware required
+          </span>
+        </div>
+      </div>
+      <section id="console">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">
+              01 / ACCESS CONTROLLER
+            </div>
+            <h2>
+              The command chamber.
+            </h2>
+          </div>
+          <span id="connection" class="badge">
+            SHOWCASE MODE
+          </span>
+        </div>
+        <p class="intro">
+          Python verifies the PIN and owns the lock state. The browser displays the result.
+        </p>
+        <div id="offline" class="notice">
+          Start
+          <code>
+            python server.py
+          </code>
+          and open
+          <code>
+            http://127.0.0.1:8765
+          </code>
+          to enable this console. The logic lab below works offline.
+        </div>
+        <div class="console-grid">
+          <article class="panel lock-panel">
+            <div class="panel-top">
+              <span>
+                VONDOOM / CONTROLLER 01
+              </span>
+              <span id="status-dot" class="dot">
+              </span>
+            </div>
+            <div class="device">
+              <div class="lock-icon" id="device-icon">
+                <div class="shackle">
+                </div>
+                <div class="lock-body">
+                  •
+                </div>
+              </div>
+              <h3 id="lock-state">
+                OFFLINE
+              </h3>
+              <p id="timer">
+                Connect to the local Python controller
+              </p>
+            </div>
+            <form id="pin-form">
+              <label for="pin" id="pin-label">
+                PIN · 6–12 digits
+              </label>
+              <input id="pin" type="password" inputmode="numeric" autocomplete="off" minlength="6" maxlength="12" pattern="[0-9]{6,12}" placeholder="Enter your private PIN" required>
+              <div id="confirm-wrap" hidden>
+                <label for="confirm-pin">
+                  Confirm your new PIN
+                </label>
+                <input id="confirm-pin" type="password" inputmode="numeric" maxlength="12" autocomplete="off">
+              </div>
+              <button id="unlock" class="primary" disabled>
+                Unlock
+              </button>
+            </form>
+            <button id="lock-now" disabled>
+              Lock now
+            </button>
+            <p id="feedback" role="status" aria-live="polite">
+              Waiting for Python.
+            </p>
+          </article>
+          <div class="side-panels">
+            <article class="panel">
+              <div class="panel-top">
+                <span>
+                  CONTROLLER TELEMETRY
+                </span>
+                <span class="mono">
+                  LIVE
+                </span>
+              </div>
+              <div class="metrics">
+                <div>
+                  <span>
+                    Attempts left
+                  </span>
+                  <strong id="attempts">
+                    —
+                  </strong>
+                </div>
+                <div>
+                  <span>
+                    Auto-lock
+                  </span>
+                  <strong>
+                    15s
+                  </strong>
+                </div>
+                <div>
+                  <span>
+                    Lockout
+                  </span>
+                  <strong>
+                    30s
+                  </strong>
+                </div>
+              </div>
+              <button id="protected" disabled>
+                Request protected response ↗
+              </button>
+              <p id="protected-result" class="muted">
+                Available only while the Python controller is unlocked.
+              </p>
+            </article>
+            <article class="panel">
+              <div class="panel-top">
+                <span>
+                  EVENT JOURNAL
+                </span>
+                <span>
+                  LAST 20
+                </span>
+              </div>
+              <ol id="events" class="events">
+                <li>
+                  No controller connected.
+                </li>
+              </ol>
+            </article>
+            <details class="panel">
+              <summary>
+                Change your PIN
+              </summary>
+              <form id="change-form">
+                <label for="current-pin">
+                  Current PIN
+                </label>
+                <input id="current-pin" type="password" inputmode="numeric" minlength="6" maxlength="12" pattern="[0-9]{6,12}" required autocomplete="off">
+                <label for="new-pin">
+                  New PIN · 6–12 digits
+                </label>
+                <input id="new-pin" type="password" inputmode="numeric" minlength="6" maxlength="12" pattern="[0-9]{6,12}" required autocomplete="off">
+                <label for="new-pin-confirm">
+                  Confirm new PIN
+                </label>
+                <input id="new-pin-confirm" type="password" inputmode="numeric" minlength="6" maxlength="12" pattern="[0-9]{6,12}" required autocomplete="off">
+                <button id="change" disabled>
+                  Save new PIN & lock
+                </button>
+              </form>
+            </details>
+          </div>
+        </div>
+      </section>
+      <section id="logic">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">
+              02 / DIGITAL LOGIC PLAYGROUND
+            </div>
+            <h2>
+              Every bit. Every decision.
+            </h2>
+          </div>
+          <span class="badge">
+            PUBLIC TEACHING CIRCUIT
+          </span>
+        </div>
+        <p class="intro">
+          Press
+          <b>
+            10 → 6 → 9
+          </b>
+          to reach S3. A wrong key resets progress. Any key in S3 returns to S0. This public sequence is independent of your private PIN.
+        </p>
+        <div class="lab-grid">
+          <article class="panel">
+            <div class="panel-top">
+              <span>
+                4-BIT INPUT BUS
+              </span>
+              <button id="reset-lab" class="small">
+                Reset
+              </button>
+            </div>
+            <div class="lab-actions">
+              <button id="demo-step" class="small">
+                Step through 10 → 6 → 9
+              </button>
+              <button id="check-logic" class="small">
+                Check all transitions
+              </button>
+            </div>
+            <p id="check-result" class="muted" role="status">
+            </p>
+            <div id="keypad" class="keypad" aria-label="Hexadecimal key input">
+            </div>
+            <div class="bits">
+              <span>
+                INPUT
+                <b id="input-bits">
+                  ----
+                </b>
+              </span>
+              <span>
+                STATE
+                <b id="state-bits">
+                  00
+                </b>
+              </span>
+              <span>
+                GREEN
+                <b id="green-bit">
+                  0
+                </b>
+              </span>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="panel-top">
+              <span>
+                STATE REGISTER
+              </span>
+              <span>
+                Q₁ Q₀
+              </span>
+            </div>
+            <div id="states" class="states">
+              <div class="active">
+                <b>
+                  S0
+                </b>
+                <span>
+                  00 / locked
+                </span>
+              </div>
+              <div>
+                <b>
+                  S1
+                </b>
+                <span>
+                  01 / first key
+                </span>
+              </div>
+              <div>
+                <b>
+                  S2
+                </b>
+                <span>
+                  10 / second key
+                </span>
+              </div>
+              <div>
+                <b>
+                  S3
+                </b>
+                <span>
+                  11 / open
+                </span>
+              </div>
+            </div>
+            <p id="lab-message" role="status">
+              Ready. Submit key 10 to begin.
+            </p>
+            <div class="signal-grid">
+              <div>
+                I₁₀
+                <b id="i10">
+                  0
+                </b>
+              </div>
+              <div>
+                I₆
+                <b id="i6">
+                  0
+                </b>
+              </div>
+              <div>
+                I₉
+                <b id="i9">
+                  0
+                </b>
+              </div>
+              <div>
+                D₁ D₀
+                <b id="next-bits">
+                  00
+                </b>
+              </div>
+            </div>
+            <p class="muted">
+              D shows the last sampled next-state value. Q updates on the same simulated clock edge.
+            </p>
+          </article>
+        </div>
+        <article class="panel waveform-panel">
+          <div class="panel-top">
+            <span>
+              LOGIC ANALYZER / LAST 16 EDGES
+            </span>
+            <span>
+              CLK · Q₁ · Q₀ · GREEN
+            </span>
+          </div>
+          <div class="table-scroll">
+            <svg id="waveform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 245" role="img" aria-label="Digital timing waveform. Submit keys to plot the clock and state bits.">
+            </svg>
+          </div>
+          <p class="muted">
+            Each column is one submitted key, not elapsed time. The table below gives exact values.
+          </p>
+        </article>
+        <article class="panel trace-panel">
+          <div class="panel-top">
+            <span>
+              CLOCK TRACE
+            </span>
+            <button id="export" class="small">
+              Export CSV ↓
+            </button>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    Edge
+                  </th>
+                  <th>
+                    Key
+                  </th>
+                  <th>
+                    Input bus
+                  </th>
+                  <th>
+                    Old Q
+                  </th>
+                  <th>
+                    D / New Q
+                  </th>
+                  <th>
+                    Green
+                  </th>
+                  <th>
+                    Red
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="trace">
+              </tbody>
+            </table>
+          </div>
+          <p class="muted">
+            Keeps the last 32 edges. Idle holds Q; Reset clears it to 00. Reset starts a new trace.
+          </p>
+        </article>
+      </section>
+      <section id="architecture">
+        <div class="eyebrow">
+          03 / SYSTEM ARCHITECTURE
+        </div>
+        <h2>
+          Two paths. One clear boundary.
+        </h2>
+        <p class="intro">
+          The browser-only circuit is an educational model. Access decisions stay inside the Python process.
+        </p>
+        <article class="panel diagram">
+          <img src="assets/architecture.svg" alt="Architecture: browser sends validated requests to Python; the controller uses credential and event storage and gates protected responses. A separate browser sequence lab does not affect authentication.">
+        </article>
+        <div class="cards">
+          <article class="panel">
+            <span class="number">
+              01
+            </span>
+            <h3>
+              Input & transport
+            </h3>
+            <p>
+              ASCII digits, bounded JSON requests, same-origin checks and a process token. The server binds only to 127.0.0.1.
+            </p>
+          </article>
+          <article class="panel">
+            <span class="number">
+              02
+            </span>
+            <h3>
+              Control & memory
+            </h3>
+            <p>
+              A serialized controller validates the whole PIN. SQLite stores a salted verifier, failed-attempt count, cooldown deadline and bounded event journal.
+            </p>
+          </article>
+          <article class="panel">
+            <span class="number">
+              03
+            </span>
+            <h3>
+              Output & timing
+            </h3>
+            <p>
+              Successful verification opens a 15-second window. Authorization checks enforce expiry even if the browser stops polling. Restart always begins locked.
+            </p>
+          </article>
+        </div>
+        <div class="demo-images">
+          <figure>
+            <img src="assets/demo-locked.svg" alt="Illustrated locked console, red indicator and zero access">
+            <figcaption>
+              01 / Locked state · illustrative view
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="assets/demo-unlocked.svg" alt="Illustrated unlocked console with green indicator and access window">
+            <figcaption>
+              02 / Unlocked state · illustrative view
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <section id="engineering">
+        <div class="eyebrow">
+          04 / UNDER THE HOOD
+        </div>
+        <h2>
+          From Boolean algebra to behavior.
+        </h2>
+        <div class="engineering-grid">
+          <article class="panel">
+            <h3>
+              Decoder equations
+            </h3>
+            <p>
+              For input B₃ B₂ B₁ B₀, each product selects exactly one four-bit value. ¬ means NOT; ∧ means AND; ∨ means OR.
+            </p>
+            <pre>I₁₀ = B₃ ∧ ¬B₂ ∧ B₁ ∧ ¬B₀
+I₆  = ¬B₃ ∧ B₂ ∧ B₁ ∧ ¬B₀
+I₉  = B₃ ∧ ¬B₂ ∧ ¬B₁ ∧ B₀</pre>
+            <h3>
+              Next-state equations
+            </h3>
+            <pre>D₁ = (¬Q₁ ∧ Q₀ ∧ I₆)
+   ∨ (Q₁ ∧ ¬Q₀ ∧ I₉)
+D₀ = (¬Q₁ ∧ ¬Q₀ ∧ I₁₀)
+   ∨ (Q₁ ∧ ¬Q₀ ∧ I₉)
+
+Green = Q₁ ∧ Q₀
+Red   = ¬(Q₁ ∧ Q₀)</pre>
+            <p class="muted">
+              D flip-flops sample D on a key-submit edge. Reset has priority. With no edge, both state bits hold.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>
+              Complete transition classes
+            </h3>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>
+                      Q
+                    </th>
+                    <th>
+                      Key 10
+                    </th>
+                    <th>
+                      Key 6
+                    </th>
+                    <th>
+                      Key 9
+                    </th>
+                    <th>
+                      Other
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      00
+                    </td>
+                    <td>
+                      01
+                    </td>
+                    <td>
+                      00
+                    </td>
+                    <td>
+                      00
+                    </td>
+                    <td>
+                      00
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      01
+                    </td>
+                    <td>
+                      00
+                    </td>
+                    <td>
+                      10
+                    </td>
+                    <td>
+                      00
+                    </td>
+                    <td>
+                      00
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      10
+                    </td>
+                    <td>
+                      00
+                    </td>
+                    <td>
+                      00
+                    </td>
+                    <td>
+                      11
+                    </td>
+                    <td>
+                      00
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      11
+                    </td>
+                    <td>
+                      00
+                    </td>
+                    <td>
+                      00
+                    </td>
+                    <td>
+                      00
+                    </td>
+                    <td>
+                      00
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h3>
+              State & output truth table
+            </h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    Q₁
+                  </th>
+                  <th>
+                    Q₀
+                  </th>
+                  <th>
+                    Green
+                  </th>
+                  <th>
+                    Red
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    0
+                  </td>
+                  <td>
+                    0
+                  </td>
+                  <td>
+                    0
+                  </td>
+                  <td>
+                    1
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    0
+                  </td>
+                  <td>
+                    1
+                  </td>
+                  <td>
+                    0
+                  </td>
+                  <td>
+                    1
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    1
+                  </td>
+                  <td>
+                    0
+                  </td>
+                  <td>
+                    0
+                  </td>
+                  <td>
+                    1
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    1
+                  </td>
+                  <td>
+                    1
+                  </td>
+                  <td>
+                    1
+                  </td>
+                  <td>
+                    0
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="muted">
+              Moore output: Green depends on the current state, after the edge. It is not a combinational function of the current key.
+            </p>
+          </article>
+        </div>
+        <article class="panel diagram">
+          <img src="assets/gates.svg" alt="Three shared product terms feed two OR gates, then two D flip-flops with feedback from Q1 and Q0. An AND of Q1 and Q0 drives Green.">
+        </article>
+        <details class="panel">
+          <summary>
+            Full 16-row decoder truth table
+          </summary>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    Key
+                  </th>
+                  <th>
+                    B₃ B₂ B₁ B₀
+                  </th>
+                  <th>
+                    I₁₀
+                  </th>
+                  <th>
+                    I₆
+                  </th>
+                  <th>
+                    I₉
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="decoder">
+              </tbody>
+            </table>
+          </div>
+        </details>
+        <details class="panel">
+          <summary>
+            Computational mathematics & complexity
+          </summary>
+          <p>
+            Four states require ⌈log₂4⌉ = 2 flip-flops. A four-bit input has 2⁴ = 16 values. Exhaustive verification compares 4 × 16 = 64 state/input pairs.
+          </p>
+          <p>
+            A uniformly random three-key sequence has one successful combination out of 16³ = 4096, or 12 bits of theoretical entropy. Because the lab sequence is published, it has no secrecy.
+          </p>
+          <p>
+            A uniformly chosen n-digit PIN has 10ⁿ possibilities and n log₂10 bits of theoretical entropy: about 19.93 bits for six digits. Human-chosen PINs are less predictable in quality and usually much weaker.
+          </p>
+          <p>
+            Five failed guesses trigger a 30-second cooldown, limiting sustained online guessing to at most about 10 guesses per minute, excluding processing time. A six-digit uniform PIN therefore takes about 50,000 minutes on average under this simplified online model. Offline attacks against a copied verifier are a different threat.
+          </p>
+          <p>
+            Gate evaluation is O(1). PIN derivation is O(c), where c = 600,000 PBKDF2-HMAC-SHA256 iterations; input length is bounded. The event journal retains 200 records. No image recognition, model downloads or cloud service is required.
+          </p>
+        </details>
+        <details class="panel">
+          <summary>
+            Karnaugh-map view & register-level design
+          </summary>
+          <p>
+            Use Gray order 00, 01, 11, 10 on the state axis. With a one-hot decoder, D₁ is high only at (01, I₆) and (10, I₉); D₀ only at (00, I₁₀) and (10, I₉). These isolated cells yield the product terms shown above. Impossible multi-hot decoder outputs are not additional key inputs.
+          </p>
+          <p>
+            The complete six-variable truth table uses Q₁ Q₀ B₃ B₂ B₁ B₀. See the notebook and docs/truth-table.csv for all 64 rows. This implementation uses three shared state/input product terms, two OR gates, a Green AND gate, inverters and two D registers. Gates are a logical model, not a chip count or an electrical timing simulation.
+          </p>
+          <p>
+            Software event handlers replace a physical clock/debounce circuit. Auto-repeat keydown events are ignored; mouse clicks are distinct submissions. A physical design would additionally need synchronization, debounce, propagation-delay analysis and an actuator driver.
+          </p>
+        </details>
+        <details class="panel">
+          <summary>
+            Scope, security & reproducibility
+          </summary>
+          <p>
+            This is a local educational access controller, not a door actuator, encrypted vault or production identity system. The protected endpoint demonstrates software authorization; its fixed message is not a secret.
+          </p>
+          <p>
+            The local OS account and filesystem are trusted. A user who can change the program or its database can bypass this lock. Active cooldowns and auto-lock use a monotonic clock. On restart, the saved wall-clock deadline restores the cooldown; system-clock changes across restarts remain outside this local model’s protection. Other local programs can interact with a loopback server. Never expose this development server publicly.
+          </p>
+          <p>
+            Run the notebook for reproducible demonstrations, exhaustive gate verification and timing experiments. Run
+            <code>
+              python -m unittest discover -s tests -v
+            </code>
+            for the automated test suite. No private PIN, database or runtime log belongs in your repository.
+          </p>
+        </details>
+      </section>
+      <footer>
+        <a class="brand" href="#">
+          ▣ VONDOOM
+        </a>
+        <p>
+          VonDoom: Digital Lock System by
+          <b>
+            Swayam Shakya
+          </b>
+        </p>
+        <span>
+          Python · Boolean logic · MIT License
+        </span>
+      </footer>
+    </main>
+  </body>
+</html>

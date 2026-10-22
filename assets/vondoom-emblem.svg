@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="550" viewBox="0 0 520 550" role="img" aria-labelledby="title desc">
+  <title id="title">VonDoom emerald hood and steel mask</title>
+  <desc id="desc">An angular steel mask beneath an emerald hood, framed by gold circuit lines and a circular seal.</desc>
+  <defs>
+    <radialGradient id="halo"><stop stop-color="#14784d" stop-opacity=".6"/><stop offset="1" stop-color="#05110d" stop-opacity="0"/></radialGradient>
+    <linearGradient id="cloak" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#23905d"/><stop offset=".45" stop-color="#0a4b32"/><stop offset="1" stop-color="#031b13"/></linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2=".3"><stop stop-color="#52645f"/><stop offset=".3" stop-color="#c6d4cb"/><stop offset=".5" stop-color="#829b8d"/><stop offset=".75" stop-color="#d3ddd5"/><stop offset="1" stop-color="#526c60"/></linearGradient>
+    <linearGradient id="jaw"><stop stop-color="#3b5147"/><stop offset=".5" stop-color="#b6c7bc"/><stop offset="1" stop-color="#4b6556"/></linearGradient>
+  </defs>
+  <circle cx="260" cy="255" r="250" fill="url(#halo)"/>
+  <g fill="none" stroke="#aa9154" stroke-opacity=".5">
+    <circle cx="260" cy="255" r="208"/><circle cx="260" cy="255" r="220" stroke-dasharray="2 13"/>
+    <path d="M28 150H80L105 125M492 150H440L415 125M28 365H80L108 393M492 365H440L412 393M260 15V50M260 463V495"/>
+  </g>
+  <path d="M74 425L105 230Q126 110 260 56Q394 110 415 230L446 425L362 468L260 432L158 468Z" fill="url(#cloak)" stroke="#31815a" stroke-width="2"/>
+  <path d="M105 425L155 222L260 92L365 222L415 425L346 384L260 414L174 384Z" fill="#05150f"/>
+  <path d="M108 415L160 205L260 90L210 193L160 367Z" fill="#249261" opacity=".3"/>
+  <path d="M412 415L360 205L260 90L310 193L360 367Z" fill="#03110c" opacity=".8"/>
+  <path d="M173 207L206 157H314L347 207L334 337L299 380H221L186 337Z" fill="url(#steel)" stroke="#d1d8cb" stroke-width="2"/>
+  <path d="M206 157L220 203H300L314 157M173 207L220 222L260 209L300 222L347 207M260 161V208" fill="none" stroke="#304a3b" stroke-width="4"/>
+  <path d="M187 228L232 240L228 256L191 249ZM333 228L288 240L292 256L329 249Z" fill="#06160f" stroke="#4c6556" stroke-width="3"/>
+  <path d="M195 239L224 246M325 239L296 246" stroke="#66f5aa" stroke-width="3"/>
+  <path d="M248 219L235 292L260 305L285 292L272 219" fill="#718d7d" stroke="#334e40" stroke-width="3"/>
+  <path d="M260 221V291L276 294" fill="none" stroke="#c2d0c5" stroke-width="2"/>
+  <path d="M187 272L222 293L213 333L239 366L221 380L186 337ZM333 272L298 293L307 333L281 366L299 380L334 337Z" fill="#486253" stroke="#94ad9c"/>
+  <path d="M220 318L238 308H282L300 318L290 353L272 365H248L230 353Z" fill="url(#jaw)" stroke="#304c3c" stroke-width="3"/>
+  <path d="M235 322H285M233 335H287M242 348H278" stroke="#172f21" stroke-width="5"/>
+  <g fill="#d1d9c9" stroke="#465a45"><circle cx="187" cy="212" r="4"/><circle cx="333" cy="212" r="4"/><circle cx="195" cy="316" r="4"/><circle cx="325" cy="316" r="4"/></g>
+  <path d="M99 425L178 393L260 432L342 393L421 425" fill="none" stroke="#af9658" stroke-width="3"/>
+  <circle cx="169" cy="415" r="12" fill="#a88b48" stroke="#e2ca88" stroke-width="2"/><circle cx="351" cy="415" r="12" fill="#a88b48" stroke="#e2ca88" stroke-width="2"/>
+  <path d="M181 415Q260 463 339 415" fill="none" stroke="#b79a55" stroke-width="3"/>
+  <text x="260" y="526" text-anchor="middle" fill="#bca66b" font-family="monospace" font-size="11" letter-spacing="5">VONDOOM / SYSTEM 01</text>
+</svg>
