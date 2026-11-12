@@ -21,7 +21,6 @@ PUBLIC = {"/assets/vondoom-emblem.svg": "assets/vondoom-emblem.svg", "/": "index
           "/assets/demo-locked.svg": "assets/demo-locked.svg",
           "/assets/demo-unlocked.svg": "assets/demo-unlocked.svg"}
 
-
 class LocalServer(ThreadingHTTPServer):
     # A stalled client should not create an unlimited number of worker threads.
     daemon_threads = False
@@ -52,7 +51,6 @@ class LocalServer(ThreadingHTTPServer):
         finally:
             self.slots.release()
 
-
 def unique_fields(pairs):
     result = {}
     for key, value in pairs:
@@ -60,7 +58,6 @@ def unique_fields(pairs):
             raise ValueError("Duplicate JSON fields are not accepted.")
         result[key] = value
     return result
-
 
 def make_server(port=8765, database=None):
     if type(port) is not int or not 0 <= port <= 65535:
@@ -177,19 +174,16 @@ def make_server(port=8765, database=None):
     server.lock = lock
     return server
 
-
 def start_background(port=8765, database=None):
     server = make_server(port, database)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     return server
 
-
 def stop_background(server):
     server.shutdown()
     server.server_close()
     server.lock.close()
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="VonDoom: Digital Lock System by Swayam Shakya")
