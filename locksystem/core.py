@@ -19,7 +19,6 @@ OPEN_SECONDS = 15
 def valid_pin(pin):
     return isinstance(pin, str) and 6 <= len(pin) <= 12 and pin.isascii() and pin.isdigit()
 
-
 class DigitalLock:
     def __init__(self, database, *, wall_clock=time.time, clock=time.monotonic):
         self.wall_clock, self.clock = wall_clock, clock
