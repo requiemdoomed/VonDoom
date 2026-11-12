@@ -3,7 +3,6 @@
 import os
 from pathlib import Path
 
-
 class DatabaseOwner:
     def __init__(self, database):
         self.file = None
