@@ -13,12 +13,10 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent
 
-
 def run(*command):
     print("\nRunning:", " ".join(command), flush=True)
     env = dict(os.environ, PYTHON=sys.executable)
     subprocess.run(command, cwd=ROOT, env=env, check=True)
-
 
 def check_files():
     for path in [ROOT / "server.py", ROOT / "verify.py", *ROOT.glob("locksystem/*.py"), *ROOT.glob("tests/*.py")]:
@@ -41,7 +39,6 @@ def check_files():
     print("Source syntax, SVGs, page assets and notebook structure passed.")
     return notebook
 
-
 def run_notebook(notebook):
     namespace = {"__name__": "__main__"}
     executed = 0
@@ -60,7 +57,6 @@ def run_notebook(notebook):
         executed += 1
     print(f"Executed {executed} notebook code cells.")
 
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--notebook", action="store_true", help="Also execute the notebook with optional prompts and server disabled.")
@@ -77,7 +73,6 @@ def main():
     if args.notebook:
         run_notebook(notebook)
     print("All available requested checks passed.")
-
 
 if __name__ == "__main__":
     main()
