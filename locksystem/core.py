@@ -16,7 +16,6 @@ MAX_ATTEMPTS = 5
 COOLDOWN = 30
 OPEN_SECONDS = 15
 
-
 def valid_pin(pin):
     return isinstance(pin, str) and 6 <= len(pin) <= 12 and pin.isascii() and pin.isdigit()
 
